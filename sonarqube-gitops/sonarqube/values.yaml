@@ -1,23 +1,28 @@
 sonarqube:
-  service:
-    type: ClusterIP
+  replicaCount: 1
 
-  persistence:
-    enabled: true
-    size: 10Gi
-
-  resources:
-    requests:
-      cpu: "500m"
-      memory: "2Gi"
-    limits:
-      cpu: "1"
-      memory: "4Gi"
+resources:
+  requests:
+    cpu: "500m"
+    memory: "2Gi"
+  limits:
+    cpu: "1"
+    memory: "3Gi"
 
 postgresql:
   enabled: true
-  persistence:
-    size: 10Gi
+  image:
+    tag: "14.9.0-debian-11-r0"
 
-securityContext:
-  fsGroup: 1000
+  primary:
+    resources:
+      requests:
+        cpu: "250m"
+        memory: "1Gi"
+      limits:
+        cpu: "500m"
+        memory: "2Gi"
+
+persistence:
+  enabled: true
+  size: 10Gi
