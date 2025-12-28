@@ -3,11 +3,11 @@ sonarqube:
 
 resources:
   requests:
-    cpu: "500m"
-    memory: "2Gi"
+    cpu: "300m"
+    memory: "1.5Gi"
   limits:
-    cpu: "1"
-    memory: "3Gi"
+    cpu: "800m"
+    memory: "2Gi"
 
 postgresql:
   enabled: true
@@ -17,11 +17,11 @@ postgresql:
   primary:
     resources:
       requests:
-        cpu: "250m"
-        memory: "1Gi"
+        cpu: "200m"
+        memory: "768Mi"
       limits:
         cpu: "500m"
-        memory: "2Gi"
+        memory: "1.5Gi"
 
 persistence:
   enabled: true
