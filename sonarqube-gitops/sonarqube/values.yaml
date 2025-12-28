@@ -2,9 +2,11 @@
 initSysctl:
   enabled: false   # ❌ REQUIRED for GKE Autopilot
 
+# SonarQube main configuration
 sonarqube:
   replicaCount: 1
 
+  # Security settings
   securityContext:
     fsGroup: 1000
 
@@ -13,6 +15,7 @@ sonarqube:
     runAsNonRoot: true
     allowPrivilegeEscalation: false
 
+# Resource requests and limits for SonarQube pods
 resources:
   requests:
     cpu: "300m"
@@ -21,14 +24,17 @@ resources:
     cpu: "800m"
     memory: "2Gi"
 
+# PostgreSQL configuration
 postgresql:
   enabled: true
 
+  # Image configuration
   image:
     registry: docker.io
     repository: bitnami/postgresql
-    tag: 14.9.0-debian-11-r0   # ✅ VALID IMAGE (fixes ImagePullBackOff)
+    tag: 14.9.0-debian-11-r0   # ✅ VALID IMAGE
 
+  # Primary container resources
   primary:
     resources:
       requests:
@@ -38,6 +44,7 @@ postgresql:
         cpu: "500m"
         memory: "1.5Gi"
 
+# Persistence configuration
 persistence:
   enabled: true
   size: 10Gi
