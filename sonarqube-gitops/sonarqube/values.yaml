@@ -1,6 +1,18 @@
 sonarqube:
   replicaCount: 1
 
+  # 🔴 REQUIRED for GKE Autopilot (disables privileged init container)
+  initSysctl:
+    enabled: false
+
+  securityContext:
+    fsGroup: 1000
+    runAsUser: 1000
+
+  containerSecurityContext:
+    runAsNonRoot: true
+    allowPrivilegeEscalation: false
+
 resources:
   requests:
     cpu: "300m"
@@ -13,6 +25,9 @@ postgresql:
   enabled: true
   image:
     tag: "14.9.0-debian-11-r0"
+
+  securityContext:
+    enabled: true
 
   primary:
     resources:
