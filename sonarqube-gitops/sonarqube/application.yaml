@@ -7,12 +7,12 @@ spec:
   project: default
 
   source:
-    repoURL: https://SonarSource.github.io/helm-chart-sonarqube
-    chart: sonarqube
-    targetRevision: 10.5.0
+    repoURL: https://github.com/nickpande/k8s-manifests   # 👈 YOUR GIT REPO
+    path: sonarqube                                      # 👈 folder path
+    targetRevision: main
     helm:
       valueFiles:
-        - values.yaml
+        - values.yaml                                    # 👈 file INSIDE repo
 
   destination:
     server: https://kubernetes.default.svc
