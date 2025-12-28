@@ -1,6 +1,6 @@
 # 🚨 MUST be top-level (NOT under sonarqube)
 initSysctl:
-  enabled: false
+  enabled: false   # ❌ REQUIRED for GKE Autopilot
 
 sonarqube:
   replicaCount: 1
@@ -9,6 +9,7 @@ sonarqube:
     fsGroup: 1000
 
   containerSecurityContext:
+    runAsUser: 1000
     runAsNonRoot: true
     allowPrivilegeEscalation: false
 
@@ -22,8 +23,11 @@ resources:
 
 postgresql:
   enabled: true
+
   image:
-    tag: "14.9.0-debian-11-r0"
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: 14.9.0-debian-11-r0   # ✅ VALID IMAGE (fixes ImagePullBackOff)
 
   primary:
     resources:
